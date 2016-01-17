@@ -11,9 +11,19 @@ module Vocabulary
     end
 
     def process_answer(question, answer)
-      correct = question.word.chomp == answer.chomp
+      correct = normalize(question.word) == normalize(answer)
       @answer_log.log(question, answer, correct)
       correct
+    end
+
+    private
+
+    # Normalize word:
+    # remove leading/trailing whitespaces,
+    # convert to downcase,
+    # remove leading "to"
+    def normalize(word)
+      word.strip.downcase.sub(/^to /, '')
     end
   end
 end

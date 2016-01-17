@@ -17,15 +17,15 @@ RSpec.describe Vocabulary::Quiz do
     before do
       @answer_log = double(Vocabulary::AnswerLog)
       allow(@answer_log).to receive(:log)
-      @question = Vocabulary::DictionaryEntry.new(definition: 'text', word: 'aaa')
+      @question = Vocabulary::DictionaryEntry.new(definition: 'text', word: 'AaA')
       @quiz = Vocabulary::Quiz.new(
         answer_log: @answer_log
       )
     end
 
-    context 'correct answer' do
+    context 'exact match' do
       before do
-        @answer = 'aaa'
+        @answer = 'AaA'
         @result = @quiz.process_answer(@question, @answer)
       end
 
@@ -38,8 +38,28 @@ RSpec.describe Vocabulary::Quiz do
       end
     end
 
-    # TODO: test different cases
-    # TODO: test whitespaces
+    context '"to"' do
+      before do
+        @answer = 'to AaA'
+        @result = @quiz.process_answer(@question, @answer)
+      end
+
+      it 'returns true' do
+        expect(@result).to be_truthy
+      end
+    end
+
+    context 'extra whitespaces and different case' do
+      before do
+        @answer = '  aAa '
+        @result = @quiz.process_answer(@question, @answer)
+      end
+
+      it 'returns true' do
+        expect(@result).to be_truthy
+      end
+    end
+
     context 'incorrect answer' do
       before do
         @answer = 'bbb'
