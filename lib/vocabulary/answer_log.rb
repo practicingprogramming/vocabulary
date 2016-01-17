@@ -1,7 +1,7 @@
 module Vocabulary
   class AnswerLog
-    def process_answer
-      fail 'Not implemented'
+    def log(question, answer)
+      # TODO: implement
     end
   end
 end

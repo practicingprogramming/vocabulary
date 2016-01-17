@@ -8,7 +8,7 @@ module Vocabulary
     def run
       while true do
         question = @quiz.next_question
-        puts "Question: #{question.text}"
+        puts "Question: #{question.definition}"
         answer = gets
         result = @quiz.process_answer(question, answer)
         puts "Result: #{result}"
