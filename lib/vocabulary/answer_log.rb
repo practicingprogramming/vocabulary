@@ -6,7 +6,7 @@ module Vocabulary
     end
 
     def log(question, answer, correct)
-      @file.puts("#{question.word};#{answer};#{correct}")
+      @file.puts("#{question.word};#{answer};#{correct};#{Time.now.to_i}")
     end
   end
 end
