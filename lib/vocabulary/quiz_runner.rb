@@ -6,7 +6,7 @@ module Vocabulary
     end
 
     def run
-      while true do
+      loop do
         question = @quiz.next_question
         puts "Question: #{question.definition}"
         answer = gets

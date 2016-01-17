@@ -1,4 +1,6 @@
 module Vocabulary
+  # Random strategy.
+  # Choose random word.
   class RandomQuizStrategy
     def initialize(dictionary)
       @dictionary = dictionary

@@ -1,4 +1,5 @@
 module Vocabulary
+  # Quiz.
   class Quiz
     def initialize(args)
       @strategy = args[:strategy]

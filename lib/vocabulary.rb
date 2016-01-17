@@ -1,4 +1,4 @@
-Dir[File.dirname(__FILE__) + '/vocabulary/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/vocabulary/*.rb'].each { |file| require file }
 
 dictionary_file = File.open('dictionary.json', 'r')
 dictionary = Vocabulary::Dictionary.new(dictionary_file.read)

@@ -1,8 +1,9 @@
 RSpec.describe Vocabulary::Dictionary do
   # TODO: test invalid json
   before do
-    @dictionary = Vocabulary::Dictionary.new('{"word1": {"definition": "definition1"}, "word2": {"definition": "definition2"}}')
-
+    @dictionary = Vocabulary::Dictionary.new(
+      '{"word1": {"definition": "definition1"}, "word2": {"definition": "definition2"}}'
+    )
   end
 
   describe 'words' do

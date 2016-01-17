@@ -1,7 +1,7 @@
 RSpec.describe Vocabulary::Quiz do
   describe 'next_question' do
     before do
-      @strategy = double()
+      @strategy = double
       allow(@strategy).to receive(:next_question).and_return('test')
       @quiz = Vocabulary::Quiz.new(
         strategy: @strategy
