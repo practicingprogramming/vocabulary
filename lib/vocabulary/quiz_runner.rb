@@ -16,8 +16,14 @@ module Vocabulary
         puts "Question: #{question.definition}"
         answer = gets.chomp
         result = @quiz.process_answer(question, answer)
-        puts result ? CORRECT : INCORRECT
+        puts result ? CORRECT : message_on_incorrect(question.word)
       end
+    end
+
+    private
+
+    def message_on_incorrect(correct_answer)
+      "Incorrect! The correct answer: #{correct_answer}".colorize(:red).underline
     end
   end
 end
