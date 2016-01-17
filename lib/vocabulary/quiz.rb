@@ -11,7 +11,7 @@ module Vocabulary
 
     def process_answer(question, answer)
       @answer_log.log(question, answer)
-      question.expected_answer == answer
+      question.word == answer
     end
   end
 end

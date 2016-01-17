@@ -16,7 +16,7 @@ RSpec.describe Vocabulary::Quiz do
   describe 'process_answer' do
     before do
       @answer_log = spy('answer_log')
-      @question = Vocabulary::Question.new('text', 'aaa')
+      @question = Vocabulary::DictionaryEntry.new(definition: 'text', word: 'aaa')
       @quiz = Vocabulary::Quiz.new(
         answer_log: @answer_log
       )

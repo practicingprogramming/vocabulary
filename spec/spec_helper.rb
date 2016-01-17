@@ -17,7 +17,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require File.dirname(__FILE__) + '/../lib/vocabulary.rb'
+Dir[File.dirname(__FILE__) + '/../lib/vocabulary/*.rb'].each {|file| require file }
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
