@@ -15,7 +15,8 @@ RSpec.describe Vocabulary::Quiz do
 
   describe 'process_answer' do
     before do
-      @answer_log = spy('answer_log')
+      @answer_log = double(Vocabulary::AnswerLog)
+      allow(@answer_log).to receive(:log)
       @question = Vocabulary::DictionaryEntry.new(definition: 'text', word: 'aaa')
       @quiz = Vocabulary::Quiz.new(
         answer_log: @answer_log
@@ -33,7 +34,7 @@ RSpec.describe Vocabulary::Quiz do
       end
 
       it 'logs the answer' do
-        expect(@answer_log).to have_received(:log).with(@question, @answer)
+        expect(@answer_log).to have_received(:log).with(@question, @answer, true)
       end
     end
 
@@ -50,7 +51,7 @@ RSpec.describe Vocabulary::Quiz do
       end
 
       it 'logs the answer' do
-        expect(@answer_log).to have_received(:log).with(@question, @answer)
+        expect(@answer_log).to have_received(:log).with(@question, @answer, false)
       end
     end
   end

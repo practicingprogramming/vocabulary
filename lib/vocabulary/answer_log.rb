@@ -1,8 +1,12 @@
 module Vocabulary
   # Class responsible for tracking and persisting questions and answers.
   class AnswerLog
-    def log(question, answer)
-      # TODO: implement
+    def initialize(file)
+      @file = file
+    end
+
+    def log(question, answer, correct)
+      @file.puts("#{question.word};#{answer};#{correct}")
     end
   end
 end

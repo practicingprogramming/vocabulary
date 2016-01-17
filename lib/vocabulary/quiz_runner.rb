@@ -9,7 +9,7 @@ module Vocabulary
       loop do
         question = @quiz.next_question
         puts "Question: #{question.definition}"
-        answer = gets
+        answer = gets.chomp
         result = @quiz.process_answer(question, answer)
         puts "Result: #{result}"
       end

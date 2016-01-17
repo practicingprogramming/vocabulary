@@ -11,8 +11,9 @@ module Vocabulary
     end
 
     def process_answer(question, answer)
-      @answer_log.log(question, answer)
-      question.word.chomp == answer.chomp
+      correct = question.word.chomp == answer.chomp
+      @answer_log.log(question, answer, correct)
+      correct
     end
   end
 end
