@@ -1,11 +1,22 @@
+require 'json'
+
 module Vocabulary
+  # TODO: transcriptions, examples
   class Dictionary
+    def initialize(json_string)
+      @data = JSON
+              .parse(json_string)
+              .map { |entry| { word: entry[0], definition: entry[1]['definition'] } }
+              .map { |entry| [entry[:word], DictionaryEntry.new(entry) ] }
+              .to_h
+    end
+
     def words
-      fail 'Not implemented'
+      @data.keys
     end
 
     def get(word)
-      fail 'Not implemented'
+      @data[word]
     end
   end
 end
