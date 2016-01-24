@@ -6,3 +6,6 @@ Metrics/AbcSize:
 
 WordArray:
   Enabled: false
+
+Style/MethodLength:
+  Max: 15

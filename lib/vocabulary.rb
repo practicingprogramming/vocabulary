@@ -19,6 +19,8 @@ def create_strategy(strategy_name, dictionary, answer_log)
     Vocabulary::RandomQuizStrategy.new(dictionary)
   when 'least-frequently-asked'
     Vocabulary::LeastFrequentlyAskedStrategy.new(dictionary, answer_log)
+  when 'worst-correct-answer-rate'
+    Vocabulary::WorstCorrectAnswerRateStrategy.new(dictionary, answer_log)
   else
     puts "Unknown strategy: #{strategy_name}"
     exit 1

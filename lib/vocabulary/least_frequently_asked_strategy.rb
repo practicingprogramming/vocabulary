@@ -1,5 +1,6 @@
 module Vocabulary
   # Ask least frequently asked word.
+  # FIXME: what about the questions that have never been asked?
   class LeastFrequentlyAskedStrategy
     def initialize(dictionary, answer_log)
       @dictionary = dictionary
