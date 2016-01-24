@@ -6,18 +6,7 @@ module Vocabulary
     def initialize(file)
       @file = file
       @entries = []
-      # TODO: read by line (more efficient but more difficult to tesy)
-      file.read.split("\n").each do |line|
-        next if line.empty?
-        tokens = line.split(';')
-        entry = {
-          word: tokens[0],
-          answer: tokens[1],
-          result: tokens[2] == 'true',
-          timestamp: tokens[3].to_i
-        }
-        @entries.push(entry)
-      end
+      parse_input(file)
     end
 
     def log(question, answer, correct)
@@ -30,6 +19,22 @@ module Vocabulary
         timestamp: timestamp
       }
       @entries.push(entry)
+    end
+
+    private
+
+    def parse_input(file)
+      # TODO: read by line (more efficient but more difficult to tesy)
+      file.read.split("\n").each do |line|
+        next if line.empty?
+        tokens = line.split(';')
+        @entries.push(
+          word: tokens[0],
+          answer: tokens[1],
+          result: tokens[2] == 'true',
+          timestamp: tokens[3].to_i
+        )
+      end
     end
   end
 end
