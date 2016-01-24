@@ -21,7 +21,6 @@ module Vocabulary
         .to_h
         .min_by { |_, rate| rate }
 
-      puts "Correct answer rate: #{worst_rate_entry[1]}"
       @dictionary.get(worst_rate_entry[0])
     end
 

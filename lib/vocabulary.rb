@@ -34,6 +34,11 @@ dictionary = Vocabulary::Dictionary.new(dictionary_file.read)
 log_file = File.open('answer_log', 'a+')
 answer_log = Vocabulary::AnswerLog.new(log_file)
 strategy = create_strategy(arguments[:strategy], dictionary, answer_log)
-quiz = Vocabulary::Quiz.new(strategy: strategy, answer_log: answer_log)
+stats_computer = Vocabulary::StatsComputer.new(answer_log)
+quiz = Vocabulary::Quiz.new(
+  strategy: strategy,
+  answer_log: answer_log,
+  stats_computer: stats_computer
+)
 runner = Vocabulary::QuizRunner.new(quiz)
 runner.run

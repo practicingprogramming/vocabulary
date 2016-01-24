@@ -17,9 +17,17 @@ RSpec.describe Vocabulary::Quiz do
     before do
       @answer_log = double(Vocabulary::AnswerLog)
       allow(@answer_log).to receive(:log)
+      @stats_computer = double(Vocabulary::StatsComputer)
+      allow(@stats_computer).to receive(:compute).with('AaA') do
+        {
+          count: 123,
+          correct_rate: 0.123
+        }
+      end
       @question = Vocabulary::DictionaryEntry.new(definition: 'text', word: 'AaA')
       @quiz = Vocabulary::Quiz.new(
-        answer_log: @answer_log
+        answer_log: @answer_log,
+        stats_computer: @stats_computer
       )
     end
 
@@ -35,6 +43,10 @@ RSpec.describe Vocabulary::Quiz do
 
       it 'logs the answer' do
         expect(@answer_log).to have_received(:log).with(@question, @answer, true)
+      end
+
+      it 'computes stats' do
+        expect(@stats_computer).to have_received(:compute).with('AaA')
       end
     end
 

@@ -17,7 +17,6 @@ module Vocabulary
         .to_h
         .min_by { |_, count| count }
 
-      puts "Asked #{min_entry[1]} times" unless min_entry.nil?
       # TODO: what if words is empty
       min_entry.nil? ? @dictionary.get(@words[0]) : @dictionary.get(min_entry[0])
     end
