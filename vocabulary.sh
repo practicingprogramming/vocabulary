@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ruby `pwd`/lib/vocabulary.rb
+ruby `pwd`/lib/vocabulary.rb "$@"
