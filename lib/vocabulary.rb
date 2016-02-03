@@ -13,7 +13,7 @@ def parse_arguments
 end
 
 # TODO: move to some unit-testable class.
-def create_strategy(strategy_name, dictionary, answer_log)
+def create_strategy(strategy_name, dictionary, answer_log, stats_computer)
   case strategy_name
   when 'random'
     Vocabulary::RandomQuizStrategy.new(dictionary)
@@ -21,6 +21,10 @@ def create_strategy(strategy_name, dictionary, answer_log)
     Vocabulary::LeastFrequentlyAskedStrategy.new(dictionary, answer_log)
   when 'worst-correct-answer-rate'
     Vocabulary::WorstCorrectAnswerRateStrategy.new(dictionary, answer_log)
+  when 'worst-correct-answer-rate'
+    Vocabulary::WorstCorrectAnswerRateStrategy.new(dictionary, answer_log)
+  when 'weighted'
+    Vocabulary::WeightedStrategy.new(dictionary, answer_log, stats_computer)
   else
     puts "Unknown strategy: #{strategy_name}"
     exit 1
@@ -33,8 +37,8 @@ dictionary_file = File.open('dictionary.json', 'r')
 dictionary = Vocabulary::Dictionary.new(dictionary_file.read)
 log_file = File.open('answer_log', 'a+')
 answer_log = Vocabulary::AnswerLog.new(log_file)
-strategy = create_strategy(arguments[:strategy], dictionary, answer_log)
 stats_computer = Vocabulary::StatsComputer.new(answer_log)
+strategy = create_strategy(arguments[:strategy], dictionary, answer_log, stats_computer)
 quiz = Vocabulary::Quiz.new(
   strategy: strategy,
   answer_log: answer_log,
