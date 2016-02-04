@@ -10,7 +10,7 @@ module Vocabulary
     ASKED_WEIGHT = -5
     LAST_ASKED_WEIGHT = 10
 
-    DEBUG = true
+    DEBUG = false
 
     def initialize(dictionary, answer_log, stats_computer)
       @dictionary = dictionary
