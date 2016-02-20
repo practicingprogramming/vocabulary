@@ -1,3 +1,5 @@
+require 'I18n'
+
 module Vocabulary
   # Quiz.
   class Quiz
@@ -5,6 +7,7 @@ module Vocabulary
       @strategy = args[:strategy]
       @answer_log = args[:answer_log]
       @stats_computer = args[:stats_computer]
+      I18n.config.available_locales = :en
     end
 
     def next_question
@@ -24,8 +27,9 @@ module Vocabulary
     # remove leading/trailing whitespaces,
     # convert to downcase,
     # remove leading "to"
+    # remove accents
     def normalize(word)
-      word.strip.downcase.sub(/^to /, '')
+      I18n.transliterate(word).strip.downcase.sub(/^to /, '')
     end
 
     def print_stats(stats)

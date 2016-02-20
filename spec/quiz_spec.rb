@@ -61,6 +61,17 @@ RSpec.describe Vocabulary::Quiz do
       end
     end
 
+    context 'accents' do
+      before do
+        @answer = 'to Ááa'
+        @result = @quiz.process_answer(@question, @answer)
+      end
+
+      it 'returns true' do
+        expect(@result).to be_truthy
+      end
+    end
+
     context 'extra whitespaces and different case' do
       before do
         @answer = '  aAa '
